@@ -1,0 +1,73 @@
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Android nang Bayan Inc</h1>
+
+<%= link_to 'New Cellphone', new_cellphone_path %>
+<br/><br/>
+<table id = "customers">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Year released</th>
+      <th>Camera</th>
+      <th>Mpixel</th>
+      <th>Internal storage</th>
+      <th>No sim slot</th>
+      <th>Size of screen</th>
+      <th>Os</th>
+      <th>Stock</th>
+      <th colspan="4">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cellphones.each do |cellphone| %>
+      <tr>
+        <% if cellphone.Stock != 0 %>
+        <td><%= cellphone.Name %></td>
+        <td><%= cellphone.Brand %></td>
+        <td><%= cellphone.Year_Released %></td>
+        <td><%= cellphone.Camera %></td>
+        <td><%= cellphone.Mpixel %></td>
+        <td><%= cellphone.Internal_Storage %></td>
+        <td><%= cellphone.No_Sim_Slot %></td>
+        <td><%= cellphone.Size_of_Screen %></td>
+        <td><%= cellphone.OS %></td>
+        <td id = "text"><%= cellphone.Stock %></td>
+        <td><%= link_to 'Show', cellphone %></td>
+        <td><%= link_to 'Edit', edit_cellphone_path(cellphone) %></td>
+        <td><%= link_to 'Destroy', cellphone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><a href = "http://localhost:3001/cellphones/decrement_stock/<%=cellphone.id%>">Sold one</a></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
